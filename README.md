@@ -53,7 +53,7 @@ You can add Squad Pay to your projects as a react hook or as a context provider 
 ### useSquadPay
 
 ```ts
-import { useSquadPay } from @toluade/squad-pay-react;
+import { useSquadPay } from "@toluade/squad-pay-react";
 
 const App = () => {
   const squadPay = useSquadPay({
