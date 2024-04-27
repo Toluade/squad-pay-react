@@ -37,12 +37,12 @@ const useSquadContext = () => {
 };
 
 type SquadProviderProps = {
-  key: string;
+  publicKey: string;
   children: React.ReactNode;
 };
 
-const SquadProvider = ({ key, children }: SquadProviderProps) => {
-  const squadPay = useSquadPay({ key });
+const SquadProvider = ({ publicKey, children }: SquadProviderProps) => {
+  const squadPay = useSquadPay({ key: publicKey });
   return (
     <SquadContext.Provider value={{ squadPay }}>
       {children}
