@@ -1,5 +1,5 @@
 <p align="center">
-    <img title="Flutterwave" height="200" src="https://squadco.com/assets/squadbyhabari.svg" width="50%"/>
+    <img title="Squad" height="200" src="https://squadco.com/assets/squadbyhabari.svg" width="50%"/>
 </p>
 
 # Squad Pay React
