@@ -4,7 +4,7 @@
 
 # Squad Pay React
 
-[![NPM](https://img.shields.io/npm/v/@toluade/squad-pay.svg)](https://www.npmjs.com/package/@toluade/squad-pay) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/@toluade/squad-pay-react.svg)](https://www.npmjs.com/package/@toluade/squad-pay-react) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 > Integrate Squad Payment Modal with your react app.
 
