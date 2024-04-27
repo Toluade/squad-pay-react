@@ -58,25 +58,21 @@ import { useSquadPay } from "@toluade/squad-pay-react";
 const App = () => {
   const squadPay = useSquadPay({
     key: "test_pk_sample-public-key-1",
-  })
+  });
 
   const pay = () => {
     squadPay({
       amount: 500,
-    email: example@email.com,
-    currency_code = "NGN",
-    redirect_link = "https://squadco.com",
-    })
-  }
+      email: "example@email.com",
+      currency_code: "NGN",
+      redirect_link: "https://squadco.com",
+    });
+  };
 
-  return (
-    <button onClick={pay}>
-      Make Payment
-    </button>
-  );
-}
+  return <button onClick={pay}>Make Payment</button>;
+};
 
-export default App
+export default App;
 ```
 
 <hr />
@@ -107,19 +103,19 @@ const PaymentPage = () => {
   const pay = () => {
     squadPay({
       amount: 500,
-    email: example@email.com,
-    currency_code = "NGN",
-    redirect_link = "https://squadco.com",
-    })
-  }
+      email: "example@email.com",
+      currency_code: "NGN",
+      redirect_link: "https://squadco.com",
+    });
+  };
 
   return (
     <div>
       <p>Kindly click on the button below to make your payment</p>
       <button onClick={pay}>Make Payment</button>
     </div>
-  )
-}
+  );
+};
 
 export default PaymentPage;
 ```
@@ -137,7 +133,6 @@ Read more about the parameters and how they can be used [here](https://squadinc.
 | onLoad (function)    | False    | This is a callback for when the payment widget loads.                                                                                                                           |
 | onClose (function)   | False    | This is a callback for when the payment widget closes.                                                                                                                          |
 | onSuccess (function) | False    | This is a callback for when payment is successful.                                                                                                                              |
-|                      |
 
 ## License
 
