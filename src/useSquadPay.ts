@@ -11,6 +11,7 @@ type SquadPayProps = {
 };
 
 const useSquadPay = ({ key }: SquadPayProps) => {
+  const publicKey = key;
   function squadPay({
     amount,
     email,
@@ -34,12 +35,12 @@ const useSquadPay = ({ key }: SquadPayProps) => {
       onClose: () => onClose(),
       onLoad: () => onLoad(),
       onSuccess: () => onSuccess(),
-      key,
+      key: publicKey,
       email: email,
       amount: amount * 100,
       ...params,
-      currency_code,
-      redirect_link,
+      currency_code: currency_code,
+      redirect_link: redirect_link,
     });
     squadInstance.setup();
     squadInstance.open();
