@@ -55,9 +55,11 @@ You can add Squad Pay to your projects as a react hook or as a context provider 
 ```ts
 import { useSquadPay } from "@toluade/squad-pay-react";
 
+const publicKey = env_variable;
+
 const App = () => {
   const squadPay = useSquadPay({
-    key: "test_pk_sample-public-key-1",
+    key: publicKey,
   });
 
   const pay = () => {
@@ -83,9 +85,11 @@ export default App;
 import { SquadProvider } from "@toluade/squad-pay-react";
 import PaymentPage from "./PaymentPage";
 
+const publicKey = env_variable;
+
 const App = () => {
   return (
-    <SquadProvider key={"test_pk_sample-public-key-1"}>
+    <SquadProvider publickKey={publicKey}>
       <PaymentPage />
     </SquadProvider>
   );
