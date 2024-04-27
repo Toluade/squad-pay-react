@@ -13,11 +13,12 @@ type SquadContextType = {
   }: {
     amount: number;
     email: string;
-    currency_code: "NGN" | "USD";
-    params: Record<string, any>;
-    onLoad: () => void;
-    onClose: () => void;
-    onSuccess: () => void;
+    currency_code?: "NGN" | "USD";
+    redirect_link?: string;
+    params?: Record<string, any>;
+    onLoad?: () => void;
+    onClose?: () => void;
+    onSuccess?: () => void;
   }) => void;
 };
 
