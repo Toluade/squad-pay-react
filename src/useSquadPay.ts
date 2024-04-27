@@ -16,19 +16,19 @@ const useSquadPay = ({ key }: SquadPayProps) => {
     email,
     currency_code = "NGN",
     redirect_link = "https://squadco.com",
-    params,
+    params = {},
     onLoad = () => null,
     onClose = () => null,
     onSuccess = () => null,
   }: {
     amount: number;
     email: string;
-    currency_code: "NGN" | "USD";
-    redirect_link: string;
-    params: Record<string, any>;
-    onLoad: () => void;
-    onClose: () => void;
-    onSuccess: () => void;
+    currency_code?: "NGN" | "USD";
+    redirect_link?: string;
+    params?: Record<string, any>;
+    onLoad?: () => void;
+    onClose?: () => void;
+    onSuccess?: () => void;
   }) {
     const squadInstance = new window.squad({
       onClose: () => onClose(),
