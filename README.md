@@ -128,15 +128,15 @@ export default PaymentPage;
 
 Read more about the parameters and how they can be used [here](https://squadinc.gitbook.io/squad-api-documentation/payments/accept-payments).
 
-| Parameter            | Required | Description                                                                                                                                                                     |
-| -------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| publicKey            | True     | Your API public key                                                                                                                                                             |
-| amount               | True     | Amount to charge the customer.                                                                                                                                                  |
-| currency_code        | False    | currency to charge in. Defaults to NGN                                                                                                                                          |
-| redirect_url         | False    | URL to redirect to when a transaction is completed. This is useful for redirecting your customer back to a custom page you want to show them. Defaults to 'https://squadco.com' |
-| onLoad (function)    | False    | This is a callback for when the payment widget loads.                                                                                                                           |
-| onClose (function)   | False    | This is a callback for when the payment widget closes.                                                                                                                          |
-| onSuccess (function) | False    | This is a callback for when payment is successful.                                                                                                                              |
+| Parameter            | Required | Description                                                                                                                                   |
+| -------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| publicKey            | True     | Your API public key                                                                                                                           |
+| amount               | True     | Amount to charge the customer.                                                                                                                |
+| currency_code        | False    | currency to charge in. Defaults to NGN                                                                                                        |
+| redirect_url         | False    | URL to redirect to when a transaction is completed. This is useful for redirecting your customer back to a custom page you want to show them. |
+| onLoad (function)    | False    | This is a callback for when the payment widget loads.                                                                                         |
+| onClose (function)   | False    | This is a callback for when the payment widget closes.                                                                                        |
+| onSuccess (function) | False    | This is a callback for when payment is successful.                                                                                            |
 
 ## License
 

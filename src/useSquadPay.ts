@@ -15,7 +15,7 @@ const useSquadPay = ({ publicKey }: SquadPayProps) => {
     amount,
     email,
     currency_code = "NGN",
-    redirect_link = "https://squadco.com",
+    redirect_link = "",
     params = {},
     onLoad = () => null,
     onClose = () => null,
