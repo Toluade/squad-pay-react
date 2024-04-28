@@ -42,7 +42,8 @@ type SquadProviderProps = {
 };
 
 const SquadProvider = ({ publicKey, children }: SquadProviderProps) => {
-  const squadPay = useSquadPay({ key: publicKey });
+  const squadPay = useSquadPay({ publicKey });
+  console.log({ API_KEY: publicKey });
   return (
     <SquadContext.Provider value={{ squadPay }}>
       {children}

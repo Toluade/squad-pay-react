@@ -7,11 +7,10 @@ interface CustomWindow extends Window {
 declare var window: CustomWindow;
 
 type SquadPayProps = {
-  key: string;
+  publicKey: string;
 };
 
-const useSquadPay = ({ key }: SquadPayProps) => {
-  const publicKey = key;
+const useSquadPay = ({ publicKey }: SquadPayProps) => {
   function squadPay({
     amount,
     email,
