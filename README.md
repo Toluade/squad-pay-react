@@ -59,7 +59,7 @@ const publicKey = env_variable;
 
 const App = () => {
   const squadPay = useSquadPay({
-    key: publicKey,
+    publicKey,
   });
 
   const pay = () => {
@@ -89,7 +89,7 @@ const publicKey = env_variable;
 
 const App = () => {
   return (
-    <SquadProvider publickKey={publicKey}>
+    <SquadProvider publicKey={publicKey}>
       <PaymentPage />
     </SquadProvider>
   );
