@@ -52,6 +52,8 @@ You can add Squad Pay to your projects as a react hook or as a context provider 
 
 ### useSquadPay
 
+> Note: The `useSquadPay` hook can take in all the parameter (such as `currency_code`, `redirect_url`, etc) passed in the squadPay function except `amount` and `email`.
+
 ```ts
 import { useSquadPay } from "@toluade/squad-pay-react";
 
@@ -80,6 +82,8 @@ export default App;
 <hr />
 
 ### SquadProvider
+
+> Note: The `SquadProvider` can take in all the parameter (such as `currency_code`, `redirect_url`, etc) passed in the squadPay function except `amount` and `email`.
 
 ```ts
 import { SquadProvider } from "@toluade/squad-pay-react";

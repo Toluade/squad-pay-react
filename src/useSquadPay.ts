@@ -6,11 +6,28 @@ interface CustomWindow extends Window {
 
 declare var window: CustomWindow;
 
-type SquadPayProps = {
+export type SquadOtherParams = {
+  currency_code?: "NGN" | "USD" | string;
+  redirect_link?: string;
+  params?: Record<string, any>;
+  onLoad?: () => void;
+  onClose?: () => void;
+  onSuccess?: () => void;
+};
+
+type SquadPayProps = SquadOtherParams & {
   publicKey: string;
 };
 
-const useSquadPay = ({ publicKey }: SquadPayProps) => {
+const useSquadPay = ({
+  publicKey,
+  currency_code: parent_currency_code,
+  redirect_link: parent_redirect_link,
+  params: parent_params = {},
+  onLoad: parentOnLoad,
+  onClose: parentOnClose,
+  onSuccess: parentOnSuccess,
+}: SquadPayProps) => {
   function squadPay({
     amount,
     email,
@@ -23,23 +40,18 @@ const useSquadPay = ({ publicKey }: SquadPayProps) => {
   }: {
     amount: number;
     email: string;
-    currency_code?: "NGN" | "USD";
-    redirect_link?: string;
-    params?: Record<string, any>;
-    onLoad?: () => void;
-    onClose?: () => void;
-    onSuccess?: () => void;
-  }) {
+  } & SquadOtherParams) {
     const squadInstance = new window.squad({
-      onClose: () => onClose(),
-      onLoad: () => onLoad(),
-      onSuccess: () => onSuccess(),
+      onClose: () => (parentOnClose ? parentOnClose() : onClose()),
+      onLoad: () => (parentOnLoad ? parentOnLoad() : onLoad()),
+      onSuccess: () => (parentOnSuccess ? parentOnSuccess() : onSuccess()),
       key: publicKey,
       email: email,
       amount: amount * 100,
       ...params,
-      currency_code: currency_code,
-      redirect_link: redirect_link,
+      ...parent_params,
+      currency_code: parent_currency_code ?? currency_code,
+      redirect_link: parent_redirect_link ?? redirect_link,
     });
     squadInstance.setup();
     squadInstance.open();

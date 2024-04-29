@@ -1,5 +1,5 @@
 import React from "react";
-import useSquadPay from "./useSquadPay";
+import useSquadPay, { SquadOtherParams } from "./useSquadPay";
 
 type SquadContextType = {
   squadPay: ({
@@ -13,13 +13,7 @@ type SquadContextType = {
   }: {
     amount: number;
     email: string;
-    currency_code?: "NGN" | "USD";
-    redirect_link?: string;
-    params?: Record<string, any>;
-    onLoad?: () => void;
-    onClose?: () => void;
-    onSuccess?: () => void;
-  }) => void;
+  } & SquadOtherParams) => void;
 };
 
 export const SquadContext = React.createContext<SquadContextType>({
@@ -36,13 +30,30 @@ const useSquadContext = () => {
   }
 };
 
-type SquadProviderProps = {
+type SquadProviderProps = SquadOtherParams & {
   publicKey: string;
   children: React.ReactNode;
 };
 
-const SquadProvider = ({ publicKey, children }: SquadProviderProps) => {
-  const squadPay = useSquadPay({ publicKey });
+const SquadProvider = ({
+  publicKey,
+  children,
+  currency_code,
+  redirect_link,
+  params,
+  onLoad,
+  onClose,
+  onSuccess,
+}: SquadProviderProps) => {
+  const squadPay = useSquadPay({
+    publicKey,
+    currency_code,
+    redirect_link,
+    params,
+    onLoad,
+    onClose,
+    onSuccess,
+  });
   return (
     <SquadContext.Provider value={{ squadPay }}>
       {children}
