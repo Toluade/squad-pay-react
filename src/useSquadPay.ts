@@ -8,6 +8,7 @@ declare var window: CustomWindow;
 
 export type SquadOtherParams = {
   currency_code?: "NGN" | "USD" | string;
+  pass_charge?: boolean;
   redirect_link?: string;
   params?: Record<string, any>;
   onLoad?: () => void;
@@ -22,16 +23,18 @@ type SquadPayProps = SquadOtherParams & {
 const useSquadPay = ({
   publicKey,
   currency_code: parent_currency_code,
+  pass_charge: parent_pass_charge = false,
   redirect_link: parent_redirect_link,
   params: parent_params = {},
-  onLoad: parentOnLoad,
-  onClose: parentOnClose,
-  onSuccess: parentOnSuccess,
+  onLoad: parentOnLoad = () => null,
+  onClose: parentOnClose = () => null,
+  onSuccess: parentOnSuccess = () => null,
 }: SquadPayProps) => {
   function squadPay({
     amount,
     email,
     currency_code = "NGN",
+    pass_charge = false,
     redirect_link = "",
     params = {},
     onLoad = () => null,
@@ -42,16 +45,17 @@ const useSquadPay = ({
     email: string;
   } & SquadOtherParams) {
     const squadInstance = new window.squad({
-      onClose: () => (parentOnClose ? parentOnClose() : onClose()),
-      onLoad: () => (parentOnLoad ? parentOnLoad() : onLoad()),
-      onSuccess: () => (parentOnSuccess ? parentOnSuccess() : onSuccess()),
+      onClose: () => (onClose ? onClose() : parentOnClose()),
+      onLoad: () => (onLoad ? onLoad() : parentOnLoad()),
+      onSuccess: () => (onSuccess ? onSuccess() : parentOnSuccess()),
       key: publicKey,
       email: email,
       amount: amount * 100,
       ...params,
       ...parent_params,
-      currency_code: parent_currency_code ?? currency_code,
-      redirect_link: parent_redirect_link ?? redirect_link,
+      currency_code: currency_code ?? parent_currency_code,
+      pass_charge: pass_charge !== undefined ? pass_charge : parent_pass_charge !== undefined ? parent_pass_charge : false,
+      redirect_link: redirect_link ?? parent_redirect_link,
     });
     squadInstance.setup();
     squadInstance.open();

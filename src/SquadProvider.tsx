@@ -6,6 +6,7 @@ type SquadContextType = {
     amount,
     email,
     currency_code,
+    pass_charge,
     params,
     onLoad,
     onClose,
@@ -39,6 +40,7 @@ const SquadProvider = ({
   publicKey,
   children,
   currency_code,
+  pass_charge,
   redirect_link,
   params,
   onLoad,
@@ -48,6 +50,7 @@ const SquadProvider = ({
   const squadPay = useSquadPay({
     publicKey,
     currency_code,
+    pass_charge,
     redirect_link,
     params,
     onLoad,
