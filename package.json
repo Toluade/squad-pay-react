@@ -12,11 +12,15 @@
   "module": "dist/index.modern.js",
   "source": "src/index.ts",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "engines": {
-    "node": ">=10"
+    "node": ">=18"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "build": "microbundle --jsx React.createElement",
     "dev": "microbundle watch"
   },
@@ -28,13 +32,20 @@
   ],
   "author": "Toluwalope Adeoye <toluade1512@gmail.com>",
   "license": "MIT",
-  "devDependencies": {
-    "@types/node": "^20.12.2",
-    "@types/react": "^18.2.73",
-    "microbundle": "^0.15.1",
-    "typescript": "^5.4.3"
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0"
   },
-  "dependencies": {
-    "react": "^18.2.0"
+  "devDependencies": {
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/react": "^16.1.0",
+    "@types/node": "^22.10.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "jsdom": "^25.0.1",
+    "microbundle": "^0.15.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "typescript": "^5.7.0",
+    "vitest": "^3.2.4"
   }
 }
