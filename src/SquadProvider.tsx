@@ -17,18 +17,18 @@ type SquadContextType = {
   } & SquadOtherParams) => void;
 };
 
-export const SquadContext = React.createContext<SquadContextType>({
-  squadPay: () => null,
-});
+export const SquadContext = React.createContext<SquadContextType | undefined>(
+  undefined
+);
 
 const useSquadContext = () => {
   const context = React.useContext(SquadContext);
 
-  if (context) {
-    return context;
-  } else {
-    throw new Error("Squad Context must be use inside the Squad Provider");
+  if (!context) {
+    throw new Error("useSquadContext must be used inside the SquadProvider");
   }
+
+  return context;
 };
 
 type SquadProviderProps = SquadOtherParams & {

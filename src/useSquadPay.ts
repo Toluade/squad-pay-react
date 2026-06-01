@@ -62,14 +62,22 @@ const useSquadPay = ({
   }
 
   useEffect(() => {
-    const base_url = "https://checkout.squadco.com";
-    const script = document.createElement("script");
-    script.src = `${base_url}/widget/squad.min.js`;
-    if (document) {
-      document?.head?.appendChild(script);
-    } else {
-      throw new Error("Unable to access DOM");
+    if (typeof document === "undefined") {
+      return;
     }
+
+    const src = "https://checkout.squadco.com/widget/squad.min.js";
+
+    // Avoid injecting the widget script more than once when multiple
+    // providers/hooks mount on the same page.
+    if (document.querySelector(`script[src="${src}"]`)) {
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.src = src;
+    script.async = true;
+    document.head.appendChild(script);
   }, []);
 
   return squadPay;
