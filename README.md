@@ -8,6 +8,9 @@
 
 > Integrate Squad Payment Modal with your react app.
 
+> Compatible with **React 18 and React 19**. `react` is a peer dependency, so the
+> package uses whichever version your app already has installed.
+
 ## Introduction
 
 Introducing "Squad Pay": Your Gateway to Effortless Payment Integration in React!
@@ -30,7 +33,8 @@ Experience the power of SquadPay today and revolutionize the way you handle paym
 2. [Usage](#usage)
    - [useSquadPay](#usesquadpay)
    - [SquadProvider](#squadprovider)
-3. [License](#license)
+3. [Troubleshooting](#troubleshooting)
+4. [License](#license)
 
 ## Installation
 
@@ -135,12 +139,37 @@ Read more about the parameters and how they can be used [here](https://squadinc.
 | Parameter            | Required | Description                                                                                                                                   |
 | -------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
 | publicKey            | True     | Your API public key                                                                                                                           |
-| amount               | True     | Amount to charge the customer.                                                                                                                |
-| currency_code        | False    | currency to charge in. Defaults to NGN                                                                                                        |
-| redirect_url         | False    | URL to redirect to when a transaction is completed. This is useful for redirecting your customer back to a custom page you want to show them. |
+| amount               | True     | Amount to charge the customer, in the **major** currency unit (e.g. Naira). It is automatically converted to the minor unit (kobo) for Squad. |
+| email                | True     | Customer's email address.                                                                                                                     |
+| currency_code        | False    | Currency to charge in. Defaults to `NGN`.                                                                                                     |
+| pass_charge          | False    | Whether the transaction charge is passed on to the customer. Defaults to `false`.                                                            |
+| redirect_link        | False    | URL to redirect to when a transaction is completed. This is useful for redirecting your customer back to a custom page you want to show them. |
+| params               | False    | Additional key/value pairs to forward to the Squad widget.                                                                                    |
 | onLoad (function)    | False    | This is a callback for when the payment widget loads.                                                                                         |
-| onClose (function)   | False    | This is a callback for when the payment widget closes.                                                                                        |
+| onClose (function)   | False    | This is a callback for when the payment widget closes.                                                                                         |
 | onSuccess (function) | False    | This is a callback for when payment is successful.                                                                                            |
+
+## Troubleshooting
+
+**`useSquadContext must be used inside the SquadProvider`**
+
+This error is thrown when `useSquadContext` (or a component that calls it) is
+rendered outside of a `<SquadProvider>`. Make sure the component tree that calls
+`useSquadContext` is wrapped by `SquadProvider`.
+
+**The payment modal does not open / `window.squad` is undefined**
+
+The hook injects the Squad checkout script (`https://checkout.squadco.com/widget/squad.min.js`)
+on mount. If `squadPay` is called before the script has finished loading, the
+widget will not be available. Trigger payments in response to user interaction
+(e.g. a button click) rather than immediately on mount, and ensure the page has
+network access to `checkout.squadco.com`.
+
+**Nothing renders / hook errors in SSR**
+
+The script is only injected in the browser (it is skipped when `document` is
+undefined), so server-side rendering will not crash, but the widget itself only
+runs on the client.
 
 ## License
 
